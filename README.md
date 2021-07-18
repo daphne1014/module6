@@ -1,7 +1,9 @@
 # module6
 
 ## User Story
-THEN the text for that event is saved in local storage
+AS A traveler
+I WANT to see the weather outlook for multiple cities
+SO THAT I can plan a trip accordingly
 
 
 ## Built With
