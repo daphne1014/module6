@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+    <header>Weather Dashboard</header>
+    <main class=container>
+        <div class="row">
+        <div class="col-md-3 col-12 search-container">
+            <div class="row">
+                <h1>Search for a City:</h1>
+                <input class="form-control" type="search" placeholder="San Diego" aria-label="Search">
+                <button class="btn btn-outline-success btn-block" type="submit">Search</button>    
+            </div>
+            <div class="row search-menu">
+                <button type="button" class="btn btn-outline-success btn-block">Austin</button>
+                <button type="button" class="btn btn-outline-success btn-block">Chicago</button>
+                <button type="button" class="btn btn-outline-success btn-block">New York</button>
+                <button type="button" class="btn btn-outline-success btn-block">Orlando</button>
+                <button type="button" class="btn btn-outline-success btn-block">San Francisco</button>
+                <button type="button" class="btn btn-outline-success btn-block">Seattle</button>
+                <button type="button" class="btn btn-outline-success btn-block">Denver</button>
+                <button type="button" class="btn btn-outline-success btn-block">Atlanta</button>
+            </div>
+        </div>
+        <div class="col-md-9 col-12 weather-dashboard">
+            <div class="row city-weather">
+
+            </div>
+            <div class="row forecast">
+                <h2>5 Day Forecast:</h2>
+                <div class="col-md-2 col-12 day-1"></div>
+                <div class="col-md-2 col-12 day-2"></div>
+                <div class="col-md-2 col-12 day-3"></div>
+                <div class="col-md-2 col-12 day-4"></div>
+                <div class="col-md-2 col-12 day-5"></div>
+            </div>
+        </div>
+    </div>
+    </main>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
