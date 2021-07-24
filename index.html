@@ -18,11 +18,11 @@
     <main class="container">
         <div class="row">
         <div class="col-md-3 col-12 search-container">
-            <div class="row">
+            <form class="row" id="city-search">
                 <h1>Search for a City:</h1>
-                <input class="form-control" type="search" placeholder="San Diego" aria-label="Search">
+                <input class="form-control" id="city" type="search" placeholder="San Diego" aria-label="Search">
                 <button class="btn btn-outline-success btn-block" type="submit">Search</button>    
-            </div>
+            </form>
             <div class="row search-menu">
                 <button type="button" class="btn btn-outline-success btn-block">Austin</button>
                 <button type="button" class="btn btn-outline-success btn-block">Chicago</button>
@@ -35,10 +35,10 @@
             </div>
         </div>
         <div class="col-md-9 col-12 weather-dashboard">
-            <div class="row city-weather">
+            <div class="row" id="current">
 
             </div>
-            <div class="row forecast">
+            <div class="row" id="forcast">
                 <h2>5 Day Forecast:</h2>
                 <div class="col-md-2 col-12 day-1"></div>
                 <div class="col-md-2 col-12 day-2"></div>
