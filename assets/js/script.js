@@ -1,67 +1,80 @@
-let cityFormEl=document.querySelector("#city-search");
-let cityInputEl=document.querySelector("#city");
-let currentWeatherEl = document.querySelector("#current");
-let forecastWeatherEl= document.querySelector("#forecast");
-let citySearchTerm=document.querySelector("#city-search-term");
+let currentDate = moment().format("[(] MM [/] DD [/] YYYY[)]");
 
-
-let searchHandler = function(event){
-    event.preventDefault();
-    let cityName = cityInputEl.value.trim();
-    if (cityName){
-        getCurrentWeather(cityName);
-        getForecast(cityName);
-        cityInputEl.value="";
-    } else{
-        alert("Please enter a city name");
-    }
-    console.log(event);
-};
-
-cityFormEl.addEventListener("submit",searchHandler);
-
-let getCurrentWeather = function (cityName) {
-    let apiUrlCurrent = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=9c76c7ef37d1bba54f751bc76aafae7e&units=metric";
+let displayWeather = function () {
+    let city = $("#city").val();
+    let apiUrlCurrent = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=9c76c7ef37d1bba54f751bc76aafae7e&units=metric";
 
     // make a request to the url
-    fetch(apiUrlCurrent).then(function (response) {
-        response.json().then(function (data) {
-           displayCurrentWeather(data,cityName);
+    fetch(apiUrlCurrent)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (response) {
+            //write DOM elements here
+            let currentTemperature = response.main.temp;
+            let currentHumidity = response.main.humidity;
+            let currentWind = response.wind.speed;
+            let icon = $("<img>");
+            icon.attr("src", "https://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png");
+            icon.attr("width", 50);
+            $("#today-icon").empty(icon)
+            $("#today-date").empty(currentDate);
+            $("#today-icon").append(icon)
+            $("#city-search-term").text(city)
+            $("#today-date").append(currentDate);
+            $("#current-temperature").text("Temperature: " + currentTemperature + " °C");
+            $("#current-humidity").text("Humidity: " + currentHumidity + "%");
+            $("#current-wind").text("Wind Speed: " + currentWind + "m/s");
+            let apiUrlUv = "https://api.openweathermap.org/data/2.5/onecall?appid=9c76c7ef37d1bba54f751bc76aafae7e&lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&exclude=minutely,hourly,alerts";
+            fetch(apiUrlUv)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (response) {
+                    //write DOM elements here
+                    console.log(response);
+                    let currentUv = response.current.uvi;
+                    $("#current-uv-title").text("UV Index: ");
+                    if (currentUv <= 3) {
+                        $("#current-uv").addClass("badge badge-success")
+                    } else if (currentUv > 3) {
+                        $("#current-uv").addClass("badge badge-yellow")
+                    } else if (currentUv > 6) {
+                        $("#current-uv").addClass("badge badge-orange")
+                    } else {
+                        $("#current-uv").addClass("badge badge-red")
+                    }
+                    $("#current-uv").text(currentUv);
+
+                    let dailyData = response.daily;
+                    console.log(dailyData[0])
+                    $("#forecast-data").empty();
+                    for (i=0; i<dailyData[5]; i++) {
+                        let div = $("<div>");
+                        div.addClass("col-md-2 col-12");
+                        let h3 = $("<h3>");
+                        h3.text(moment(currentDate).add((1 + i), 'days'));
+                        let icon = $("<img>");
+                        icon.attr("src", "https://openweathermap.org/img/wn/" + dailyData[i].weather[0].icon + "@2x.png");
+                        icon.attr("width", 80);
+                        div.append(h3);
+                        div.append(icon);
+                        let futureTemperature = $('<p>')
+                        let futureWind = $('<p>')
+                        let futureHumidity = $('<p>');
+                        futureTemperature.text("Temperature: " + dailyData[i].temp.day + " °C");
+                        futureHumidity.text("Humidity: " + dailyData[i].humidity + "%");
+                        futureWind.text("Wind Speed: " + dailyData[i].wind_speed + "m/s");
+                        div.append(futureTemperature);
+                        div.append(futureHumidity);
+                        div.append(futureWind);
+                        $("#forecast-data").append(div);
+                    }
+                });
+        })
+        .catch(function (error) {
+            alert("Connection Error!");
         });
-    });
-};
-
-let getForecast = function(cityName){
-    apiUrlForcast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=9c76c7ef37d1bba54f751bc76aafae7e&units=metric";
-    fetch(apiUrlForcast).then(function (response) {
-        response.json().then(function (data) {
-            displayForecastWeather(data,cityName);
-        });
-    });
-};
-
-let displayCurrentWeather = function(weatherCurrent, searchTerm){
-    console.log(weatherCurrent);
-    console.log(searchTerm);
-    //clear old content
-    // currentWeatherEl.textContent="";
-    // forecastWeatherEl.textContent="";
-    citySearchTerm.textContent=searchTerm;
-    // let currentDate = weatherCurrent.main.;
-    let currentTemperature = weatherCurrent.main.temp;
-    let currentHumidity = weatherCurrent.main.humidity;
-    let currentPressure = weatherCurrent.main.pressure;
-    $("#current-temperature").text("Temperature: " +currentTemperature+" °C");
-    $("#current-humidity").text("Humidity: "+currentHumidity +"%");
-    $("#current-pressure").text("Pressure "+currentPressure + " Pa");
-}
-let displayForecastWeather=function(weatherForecast,searchTerm){
-    console.log(weatherForecast);
-    console.log(searchTerm);
-
-    // let forecastDate=;
-    // let forecastIcon=;
-    // let forecastTemperature=;
-    // let forecastHumidity=;
 }
 
+$("#submit").click(displayWeather);

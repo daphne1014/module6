@@ -21,40 +21,32 @@
             <form class="row" id="city-search">
                 <h1>Search for a City:</h1>
                 <input class="form-control" id="city" type="search" placeholder="San Diego" aria-label="Search">
-                <button class="btn btn-outline-success btn-block" type="submit">Search</button>    
+                <button id="submit" class="btn btn-outline-success btn-block" type="submit">Search</button>    
             </form>
             <div class="row search-menu">
-                <button type="button" class="btn btn-outline-success btn-block">Austin</button>
-                <button type="button" class="btn btn-outline-success btn-block">Chicago</button>
-                <button type="button" class="btn btn-outline-success btn-block">New York</button>
-                <button type="button" class="btn btn-outline-success btn-block">Orlando</button>
-                <button type="button" class="btn btn-outline-success btn-block">San Francisco</button>
-                <button type="button" class="btn btn-outline-success btn-block">Seattle</button>
-                <button type="button" class="btn btn-outline-success btn-block">Denver</button>
-                <button type="button" class="btn btn-outline-success btn-block">Atlanta</button>
             </div>
         </div>
         <div class="col-md-9 col-12 weather-dashboard">
             <div class="row" id="current">
-                <h2 class="col=12" id="city-search-term"></h2>
-                <div class="row" id="current-detail">
-                    <h3 class="col-12" id="current-temperature"></h3>
-                    <h3 class="col-12" id="current-humidity"></h3>
-                    <h3 class="col-12" id="current-pressure"></h3>
-                </div>
+                <h2 class="col-12">
+                <span id="city-search-term"> </span>
+                <span id="today-date"></span>
+                <span id="today-icon"></span>
+                </h2>
+                    <div class="col-12" id="current-temperature"></div>
+                    <div class="col-12" id="current-humidity"></div>
+                    <div class="col-12" id="current-wind"></div>
+                    <div class="col-2" id="current-uv-title"> </div><span id="current-uv" class="col-1"></span>
             </div>
-            <div class="row" id="forcast">
-                <h2>5 Day Forecast:</h2>
-                <div class="col-md-2 col-12 day-1"></div>
-                <div class="col-md-2 col-12 day-2"></div>
-                <div class="col-md-2 col-12 day-3"></div>
-                <div class="col-md-2 col-12 day-4"></div>
-                <div class="col-md-2 col-12 day-5"></div>
+            <div class="row" id="forecast">
+                <h2 class="col-12">5 Day Forecast:</h2>
+                <div class="row" id="forecast-data"></div>
             </div>
         </div>
     </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> 
     <script src="./assets/js/script.js"></script>
 </body>
 
