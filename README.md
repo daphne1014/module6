@@ -18,7 +18,7 @@ SO THAT I can plan a trip accordingly
 https://daphne1014.github.io/module6/
 
 ## Screenshot
-![screenshot of the page](./assets/images/screenshot.JPG?raw=true "Screenshot")
+![screenshot of the page](./assets/images/Screenshot.JPG?raw=true "Screenshot")
 
 ## Contribution
 Made with ❤️ by Daphne
