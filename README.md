@@ -10,11 +10,15 @@ SO THAT I can plan a trip accordingly
 * HTML
 * CSS
 * JavaScript
+* JQuery
 * Bootstrap
 * Third-Party APIs
 
 ## Website
 https://daphne1014.github.io/module6/
+
+## Screenshot
+![screenshot of the page](./assets/images/screenshot.JPG?raw=true "Screenshot")
 
 ## Contribution
 Made with ❤️ by Daphne
